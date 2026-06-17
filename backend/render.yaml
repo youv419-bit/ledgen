@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: commercelead-finder-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: FRONTEND_URL
+        sync: false
+      - key: DB_PATH
+        value: /var/data/commercelead.db
+    disk:
+      name: commercelead-data
+      mountPath: /var/data
+      sizeGB: 1
